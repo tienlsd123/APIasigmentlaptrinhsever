@@ -17,10 +17,8 @@ const WALLPAPERS = mongoose.model('hinhnens', new Schema({
 
 router.get('/', function (req, res, next) {
     WALLPAPERS.find({}, function (err, result) {
-
         if (err) throw err;
         res.render('index', {data: result});
-
     })
 
 });
@@ -32,6 +30,13 @@ router.get('/delete/', function (req, res) {
         res.send('Xoa Thanh Cong!!!');
     })
 });
+
+router.get('/getUser', function (req, res){
+        const arrW = mongoose.model('hinhnens', WALLPAPERS);
+        arrW.find({}, function (error, result) {
+            res.send(result);
+        })
+})
 
 router.get('/updateForm/', function (req, res) {
     const id = req.query.id;
