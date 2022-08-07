@@ -32,10 +32,10 @@ router.get('/delete/', function (req, res) {
 });
 
 router.get('/getUser', function (req, res){
-        const arrW = mongoose.model('hinhnens', WALLPAPERS);
-        arrW.find({}, function (error, result) {
-            res.send(result);
-        })
+    WALLPAPERS.find({}, function (err, result) {
+        if (err) throw err;
+        res.send(result);
+    })
 })
 
 router.get('/updateForm/', function (req, res) {
