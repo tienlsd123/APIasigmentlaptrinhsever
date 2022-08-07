@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo7</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+
+<% for(var i = 0; i < data.length; i++){ %>
+<br>
+<img src="<%= data[i].links %>">
+<h2>tieude: <%=data[i].tieude %> </h2>
+<h2>noidung: <%= data[i].noidung %> </h2>
+<h2>ngaythang: <%= data[i].ngaythang %> </h2>
+
+<a href="/delete/?id=<%= data[i]._id %>">Delete</a>
+<a href="/updateForm/?id=<%= data[i]._id %>">update</a>
+
+<% } %>
+</body>
+</html>
