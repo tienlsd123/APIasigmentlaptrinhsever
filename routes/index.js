@@ -31,12 +31,33 @@ router.get('/delete/', function (req, res) {
     })
 });
 
-router.get('/getUser', function (req, res){
+router.get('/getUser', function (req, res) {
     WALLPAPERS.find({}, function (err, result) {
         if (err) throw err;
         res.send(result);
     })
 })
+
+router.get('/insertForm/', function (req, res) {
+    res.render('insert', {title: 'Insert'})
+});
+
+router.post('/insert/', function (req, res) {
+    const tieude = req.body.tieude;
+    const noidung = req.body.noidung;
+    const ngaythang = req.body.ngaythang;
+    const links = req.body.links;
+
+    WALLPAPERS.insertMany({
+        tieude: tieude,
+        noidung: noidung,
+        ngaythang: ngaythang,
+        links: links
+    }, function (error, result) {
+        if(error) throw error;
+        res.redirect('/');
+    })
+});
 
 router.get('/updateForm/', function (req, res) {
     const id = req.query.id;
@@ -59,8 +80,8 @@ router.post('/update/', function (req, res) {
         ngaythang: ngaythang,
         links: links
     })
-    WALLPAPERS.findByIdAndUpdate(id, hinhnen, function (err, result){
-        if(err) throw err;
+    WALLPAPERS.findByIdAndUpdate(id, hinhnen, function (err, result) {
+        if (err) throw err;
         res.redirect('/');
 
     })
